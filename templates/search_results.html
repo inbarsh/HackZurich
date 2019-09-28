@@ -1,21 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Search Results</title>
-</head>
-<body>
-<h1>Search Results</h1>
+    <head>
+        <title>Search Results</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {
+              box-sizing: border-box;
+            }
 
-<ul>
-  {% for company in object_list %}
-    <li>
-      {{ company.name }}
-      sustainability_score: {{ company.score }}
-      {{ company.graph_image }}
-      {{ company.words_frequency_image }}
-    </li>
-  {% endfor %}
-</ul>
-</body>
+            body {
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+            /* Style the header */
+            header {
+              background-color: #666;
+              padding: 0px;
+              text-align: center;
+            }
+
+            /* Container for flexboxes */
+            section {
+              display: -webkit-flex;
+              display: flex;
+            }
+
+            /* Style the navigation menu */
+            nav {
+              -webkit-flex: 1;
+              -ms-flex: 1;
+              flex: 1;
+              background: #ccc;
+              padding: 20px;
+            }
+
+            /* Style the list inside the menu */
+            nav ul {
+              list-style-type: none;
+              padding: 0;
+            }
+
+            /* Style the content */
+            article {
+              -webkit-flex: 3;
+              -ms-flex: 3;
+              flex: 3;
+              background-color: #f1f1f1;
+              padding: 10px;
+            }
+
+            /* Style the footer */
+            footer {
+              background-color: #777;
+              padding: 10px;
+              text-align: center;
+              color: white;
+            }
+
+            /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+            @media (max-width: 600px) {
+              section {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+              }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="../media/images/logo.png"/>
+        </header>
+
+        <section>
+            <nav>
+                <ul>
+                    {% for company in object_list %}
+                        <h2>{{ company.name }}</h2>
+                        <h4>Sustainability Score: {{ company.score }}</h4>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            <article>
+                <ul>
+                    {% for company in object_list %}
+                        <img src="{{ company.words_frequency_image.url }}" alt="frequency">
+                    {% endfor %}
+                </ul>
+            </article>
+        </section>
+
+    </body>
 </html>
+

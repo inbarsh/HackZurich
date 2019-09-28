@@ -15,6 +15,6 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = Company.objects.filter(
-            Q(name__icontains=query) | Q(score__icontains=query) | Q(graph_image__icontains=query) | Q(words_frequency_image__icontains=query)
+            Q(name__icontains=query) | Q(score__icontains=query) | Q(words_frequency_image__icontains=query)
         )
         return object_list
